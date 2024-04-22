@@ -9,5 +9,5 @@ ToRun: \
 command "make" \
 command "make run" 
 
-InputExample.java - print out all connceted devices and their components.
+InputExample.java - print out all connceted devices and their components. \
 ReadFirstMouse.java - constantly poll for event on the 1st mouse-typed device.
