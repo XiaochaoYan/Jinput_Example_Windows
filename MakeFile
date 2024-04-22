@@ -1,0 +1,29 @@
+JFLAGS = -g -cp ".;jinput-2.0.10.jar;jinput-2.0.10-nativs-all.jar"
+JC = javac
+JVM = java 
+FILE = .java
+
+JAVA_INCLUDE = org/jextract
+MAIN = InputExample
+
+CLASSES = \
+	InputExample.java \
+	JinputMouse.java \
+	ReadFirstMouse.java
+
+%.class:%.java
+	$(JC) $(JFLAGS) $<
+
+classes: $(CLASSES:.java=.class)
+
+jinput-dx8_64.dll:jinput-2.0.10.jar
+	jar xf jinput-2.0.10.jar
+	jar xf jinput-2.0.10-natives-all.jar
+	
+run: $(MAIN).class jinput-dx8_64.dll 
+	$(JVM) ./$(MAIN)$(FILE)
+clean:
+	$(RM) *.class
+
+set_ENV:
+	PATH = ${PATH}";"$(pwd.path)
